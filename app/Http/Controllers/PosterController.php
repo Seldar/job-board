@@ -65,6 +65,7 @@ class PosterController extends Controller
      * If the poster exists, checks its status and fill $this->error if any obstacles for posting a job exists.
      *
      * @param string $email Email address of the poster
+     *
      * @return bool
      */
     public function save($email)
@@ -94,6 +95,7 @@ class PosterController extends Controller
      *
      * @param Poster $poster Poster model to be approved
      * @param string $key Hashed key for security purposes
+     *
      * @return Response
      */
     public function approve(Poster $poster, $key)
@@ -111,6 +113,7 @@ class PosterController extends Controller
      *
      * @param Poster $poster Poster model to be marked as spam
      * @param string $key Hashed key for security purposes
+     *
      * @return Response
      */
     public function spam(Poster $poster, $key)

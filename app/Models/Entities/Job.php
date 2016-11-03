@@ -32,6 +32,8 @@ class Job extends Model
     public $timestamps = false;
 
     /**
+     * BelongsTo Relation definition to access related poster Model
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function poster()

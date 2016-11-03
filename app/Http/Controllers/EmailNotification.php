@@ -4,6 +4,7 @@
  * User: Ulukut
  * Date: 2.11.2016
  * Time: 12:46
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
@@ -25,9 +26,10 @@ class EmailNotification implements NotificationInterface
     /**
      * Sends notification by email.
      *
-     * @param string $mailable the mailable class name to initialize
-     * @param string $to email recipient
-     * @param array $params additional parameters to include the notification text
+     * @param string $mailable The mailable class name to initialize
+     * @param string $to Email recipient
+     * @param array $params Additional parameters to include the notification text
+     *
      * @return void
      */
     public function sendNotification($mailable, $to, array $params)

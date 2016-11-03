@@ -4,6 +4,7 @@
  * User: Ulukut
  * Date: 1.11.2016
  * Time: 16:31
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
@@ -42,6 +43,7 @@ class JobRepository implements JobInterface
      * Returns the job object associated with the passed id
      *
      * @param int $jobId Database id of the associated job
+     *
      * @return stdClass
      */
     public function getById($jobId)
@@ -55,6 +57,7 @@ class JobRepository implements JobInterface
      * @param string $orderBy Order by column name.
      * @param string $direction Order by direction.
      * @param int $limit limit the results.
+     *
      * @return array
      */
     public function getAll($orderBy, $direction, $limit = 100)
@@ -71,7 +74,8 @@ class JobRepository implements JobInterface
     /**
      * Save the job data to database using $request data.
      *
-     * @param array $request
+     * @param array $request Data to be used to save a Job Post
+     *
      * @return void
      */
     public function save(array $request)
@@ -83,7 +87,8 @@ class JobRepository implements JobInterface
     /**
      * Converts the Eloquent object to a standard format
      *
-     * @param Model $job
+     * @param Model $job Model to be converted
+     *
      * @return stdClass
      */
     protected function convertFormat($job)

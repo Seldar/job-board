@@ -58,6 +58,7 @@ class JobController extends Controller
      * Stores a newly created job in database.
      *
      * @param Request $request Request object containing get/post parameters
+     *
      * @return Response
      */
     public function store(Request $request)
@@ -79,7 +80,7 @@ class JobController extends Controller
     }
 
     /**
-     * Returns all job data to view
+     * Returns all job data as View.
      *
      * @return Response
      */
@@ -90,7 +91,10 @@ class JobController extends Controller
     }
 
     /**
+     * Returns a single Job data as View.
+     *
      * @param Job $job Job entitiy to show details for
+     *
      * @return Response
      */
     public function show(Job $job)

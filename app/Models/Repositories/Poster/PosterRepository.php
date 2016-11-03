@@ -4,6 +4,7 @@
  * User: Ulukut
  * Date: 1.11.2016
  * Time: 16:31
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
@@ -42,6 +43,7 @@ class PosterRepository implements PosterInterface
      * Returns the poster object associated with the passed email address.
      *
      * @param string $email Email address of the poster to be retrieved.
+     *
      * @return stdClass
      */
     public function getByEmail($email)
@@ -53,6 +55,7 @@ class PosterRepository implements PosterInterface
      * Save the poster data to database using $email data.
      *
      * @param string $email Email address of the poster to be saved.
+     *
      * @return int
      */
     public function save($email)
@@ -67,6 +70,7 @@ class PosterRepository implements PosterInterface
      * Converts the Eloquent object to a standard format.
      *
      * @param mixed $job
+     *
      * @return stdClass
      */
     protected function convertFormat($job)
