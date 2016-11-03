@@ -66,7 +66,8 @@ class JobRepository implements JobInterface
         foreach ($this->jobModel->whereHas('poster', function ($q) {
             $q->where('approved', 1)->where('spam', 0);
         })->orderBy($orderBy, $direction)->take($limit)->get() as $job) {
-            $data[$job->id] = $job;
+            $data[$job->id] = $this->convertFormat($job);
+            $data[$job->id]->email = $job->poster->email;
         }
         return $data;
     }
@@ -91,7 +92,7 @@ class JobRepository implements JobInterface
      *
      * @return stdClass
      */
-    protected function convertFormat($job)
+    public function convertFormat($job)
     {
         return $job ? (object)$job->toArray() : null;
     }

@@ -21,7 +21,8 @@
             "database"
         ],
         "psr-4": {
-            "JobBoard\\": "app/"
+            "JobBoard\\": "app/",
+            "Tests\\": "tests/"
         }
     },
     "autoload-dev": {

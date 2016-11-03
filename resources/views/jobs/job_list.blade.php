@@ -16,7 +16,7 @@
                             <tr>
                                 <td><a href="{{ url("jobs/" . $job->id) }}">{{$job->title}}</a></td>
                                 <td>{{$job->description}}</td>
-                                <td>{{$job->poster->email}}</td>
+                                <td>{{$job->email}}</td>
                             </tr>
                         @endforeach
                         </table>
