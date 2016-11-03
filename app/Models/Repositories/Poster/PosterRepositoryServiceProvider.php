@@ -13,19 +13,19 @@ use JobBoard\Models\Entities\Poster;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Register our Repository with Laravel
+ * Registers Poster Repository Service with Laravel.
  */
 class PosterRepositoryServiceProvider extends ServiceProvider
 {
     /**
-     * Registers the jobInterface with Laravels IoC Container
+     * Registers the PosterInterface with Laravels IoC Container
      *
+     * @return void
      */
     public function register()
     {
         // Bind the returned class to the namespace 'JobBoard\Models\Repositories\Poster\PosterInterface'
-        $this->app->bind('JobBoard\Models\Repositories\Poster\PosterInterface', function($app)
-        {
+        $this->app->bind('JobBoard\Models\Repositories\Poster\PosterInterface', function ($app) {
             return new PosterRepository(new Poster());
         });
     }

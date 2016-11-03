@@ -12,14 +12,26 @@ namespace JobBoard\Models\Repositories\Job;
 use Illuminate\Database\Eloquent\Model;
 use \stdClass;
 
+/**
+ * Class JobRepository
+ *
+ * Job repository to handle data layer logic for Job entity.
+ *
+ * @package JobBoard\Models\Repositories\Job
+ */
 class JobRepository implements JobInterface
 {
-    protected $jobModel;
+    /**
+     * Job entity to make database calls.
+     *
+     * @var Model
+     */
+    private $jobModel;
 
     /**
-     * Setting our class $jobModel to the injected model
+     * Sets the $job Model to the injected model.
      *
-     * @param Model $job
+     * @param Model $job Job Model to inject
      */
     public function __construct(Model $job)
     {
@@ -29,7 +41,7 @@ class JobRepository implements JobInterface
     /**
      * Returns the job object associated with the passed id
      *
-     * @param mixed $jobId
+     * @param int $jobId Database id of the associated job
      * @return stdClass
      */
     public function getById($jobId)
@@ -37,17 +49,31 @@ class JobRepository implements JobInterface
         return $this->convertFormat($this->jobModel->find($jobId));
     }
 
-    public function getAll($orderBy, $direction, $limit = 10)
+    /**
+     * Returns all results according to specified $orderBy and $direction order and $limit
+     *
+     * @param string $orderBy Order by column name.
+     * @param string $direction Order by direction.
+     * @param int $limit limit the results.
+     * @return array
+     */
+    public function getAll($orderBy, $direction, $limit = 100)
     {
         $data = array();
         foreach ($this->jobModel->whereHas('poster', function ($q) {
             $q->where('approved', 1)->where('spam', 0);
-        })->orderBy($orderBy, $direction)->get() as $job) {
+        })->orderBy($orderBy, $direction)->take($limit)->get() as $job) {
             $data[$job->id] = $job;
         }
         return $data;
     }
 
+    /**
+     * Save the job data to database using $request data.
+     *
+     * @param array $request
+     * @return void
+     */
     public function save(array $request)
     {
         $this->jobModel->create($request);
@@ -55,9 +81,9 @@ class JobRepository implements JobInterface
 
 
     /**
-     * Converting the Eloquent object to a standard format
+     * Converts the Eloquent object to a standard format
      *
-     * @param mixed $job
+     * @param Model $job
      * @return stdClass
      */
     protected function convertFormat($job)

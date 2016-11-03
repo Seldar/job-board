@@ -13,19 +13,19 @@ use JobBoard\Models\Entities\Job;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Register our Repository with Laravel
+ * Registers Job Repository service with Laravel.
  */
 class JobRepositoryServiceProvider extends ServiceProvider
 {
     /**
-     * Registers the jobInterface with Laravels IoC Container
+     * Registers the JobInterface with Laravels IoC Container
      *
+     * @return void
      */
     public function register()
     {
         // Bind the returned class to the namespace 'JobBoard\Models\Repositories\Job\JobInterface'
-        $this->app->bind('JobBoard\Models\Repositories\Job\JobInterface', function($app)
-        {
+        $this->app->bind('JobBoard\Models\Repositories\Job\JobInterface', function ($app) {
             return new JobRepository(new Job());
         });
     }

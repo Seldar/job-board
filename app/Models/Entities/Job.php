@@ -4,6 +4,13 @@ namespace JobBoard\Models\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Job
+ *
+ * Class to define Job entity
+ *
+ * @package JobBoard\Models\Entities
+ */
 class Job extends Model
 {
     /**

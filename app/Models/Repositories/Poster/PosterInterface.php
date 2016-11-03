@@ -9,13 +9,28 @@
 
 namespace JobBoard\Models\Repositories\Poster;
 
-use Illuminate\Http\Request;
-
+/**
+ * Interface PosterInterface
+ *
+ * Interface for poster repositories.
+ *
+ * @package JobBoard\Models\Repositories\Poster
+ */
 interface PosterInterface
 {
-    public function getAll(array $order, $limit);
-
+    /**
+     * Returns the Poster object associated with the passed email
+     *
+     * @param string $email email of the poster to be retrieved
+     * @return \stdClass
+     */
     public function getByEmail($email);
 
+    /**
+     * Save the poster data to database using $email data
+     *
+     * @param string $email email of the poster to be saved
+     * @return mixed
+     */
     public function save($email);
 }

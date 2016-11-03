@@ -8,26 +8,49 @@ use JobBoard\Models\Repositories\Poster\PosterInterface;
 use JobBoard\Models\Entities\Poster;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * Class PosterController
+ *
+ * Controller that handles Poster related logic
+ *
+ * @package JobBoard\Http\Controllers
+ */
 class PosterController extends Controller
 {
     /**
-     * Containing our posterRepository to make all our database calls to
+     * Contains PosterRepository to make database calls.
      *
      * @var PosterInterface
      */
     private $posterRepo;
 
+    /**
+     * Contains notification handler to send notifications to poster.
+     *
+     * @var NotificationInterface
+     */
     private $notification;
 
+    /**
+     * Contains errors to show in views.
+     *
+     * @var array
+     */
     public $errors;
 
+    /**
+     * Contains if a new poster is created in the database.
+     *
+     * @var bool
+     */
     public $newPoster = 0;
 
     /**
-     * Loads our $jobRepo with the actual Repo associated with our jobInterface
+     * Loads $posterRepo and $notification with the actual concrete class associated with PosterInterface and
+     * NotificationInterface.
      *
-     * @param PosterInterface $posterRepo
-     * @param NotificationInterface $notification
+     * @param PosterInterface $posterRepo Repository to make database calls
+     * @param NotificationInterface $notification Notification handler to send notifications
      */
     public function __construct(PosterInterface $posterRepo, NotificationInterface $notification)
     {
@@ -35,6 +58,15 @@ class PosterController extends Controller
         $this->notification = $notification;
     }
 
+    /**
+     * Saves the poster associated with $email.
+     *
+     * Saves a new poster if a poster with $email does not exists and sends notification to the poster.
+     * If the poster exists, checks its status and fill $this->error if any obstacles for posting a job exists.
+     *
+     * @param string $email Email address of the poster
+     * @return bool
+     */
     public function save($email)
     {
         $currPoster = $this->posterRepo->getByEmail($email);
@@ -57,6 +89,13 @@ class PosterController extends Controller
         }
     }
 
+    /**
+     * Approves the poster if the hashed key is correct.
+     *
+     * @param Poster $poster Poster model to be approved
+     * @param string $key Hashed key for security purposes
+     * @return Response
+     */
     public function approve(Poster $poster, $key)
     {
         if (Hash::check($poster->email, $key)) {
@@ -67,6 +106,13 @@ class PosterController extends Controller
         return view("posters.approve_fail");
     }
 
+    /**
+     * Marks the poster as spammer if hashed key is correct.
+     *
+     * @param Poster $poster Poster model to be marked as spam
+     * @param string $key Hashed key for security purposes
+     * @return Response
+     */
     public function spam(Poster $poster, $key)
     {
         if (Hash::check($poster->email, $key)) {

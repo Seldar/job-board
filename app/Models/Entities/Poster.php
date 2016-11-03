@@ -4,6 +4,13 @@ namespace JobBoard\Models\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Poster
+ *
+ * Class to define Poster entity
+ *
+ * @package JobBoard\Models\Entities
+ */
 class Poster extends Model
 {
     /**

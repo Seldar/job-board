@@ -12,14 +12,26 @@ namespace JobBoard\Models\Repositories\Poster;
 use Illuminate\Database\Eloquent\Model;
 use \stdClass;
 
+/**
+ * Class PosterRepository
+ *
+ * Poster repository to handle data layer logic for Poster entity.
+ *
+ * @package JobBoard\Models\Repositories\Poster
+ */
 class PosterRepository implements PosterInterface
 {
-    protected $posterModel;
+    /**
+     * Poster entity to make database calls.
+     *
+     * @var Model
+     */
+    private $posterModel;
 
     /**
-     * Setting our class $jobModel to the injected model
+     * Sets the $poster Model to the injected model.
      *
-     * @param Model $poster
+     * @param Model $poster Poster Model to inject
      */
     public function __construct(Model $poster)
     {
@@ -27,9 +39,9 @@ class PosterRepository implements PosterInterface
     }
 
     /**
-     * Returns the job object associated with the passed id
+     * Returns the poster object associated with the passed email address.
      *
-     * @param mixed $email
+     * @param string $email Email address of the poster to be retrieved.
      * @return stdClass
      */
     public function getByEmail($email)
@@ -37,11 +49,12 @@ class PosterRepository implements PosterInterface
         return $this->convertFormat($this->posterModel->where("email",$email)->first());
     }
 
-    public function getAll(array $order, $limit = 10)
-    {
-
-    }
-
+    /**
+     * Save the poster data to database using $email data.
+     *
+     * @param string $email Email address of the poster to be saved.
+     * @return int
+     */
     public function save($email)
     {
         $this->posterModel->email = $email;
@@ -51,7 +64,7 @@ class PosterRepository implements PosterInterface
 
 
     /**
-     * Converting the Eloquent object to a standard format
+     * Converts the Eloquent object to a standard format.
      *
      * @param mixed $job
      * @return stdClass

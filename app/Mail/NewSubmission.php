@@ -8,26 +8,38 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * Class NewSubmission
+ *
+ * Controller to handle new submission mails.
+ *
+ * @package JobBoard\Mail
+ */
 class NewSubmission extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $params;
     /**
-     * Create a new message instance.
+     * Additional parameters to build the url's and dynamic content in the email body.
      *
-     * @return void
+     * @var array
+     */
+    public $params;
+
+    /**
+     * Create a new message instance with additional parameters.
+     *
+     * @param array $params Additional parameters
      */
     public function __construct($params)
     {
-
         $this->params = $params;
     }
 
     /**
-     * Build the message.
+     * Builds the email message.
      *
-     * @return $this
+     * @return Mailable
      */
     public function build()
     {

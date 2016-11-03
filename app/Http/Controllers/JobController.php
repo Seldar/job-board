@@ -7,23 +7,36 @@ use Illuminate\Http\Response;
 use JobBoard\Models\Repositories\Job\JobInterface;
 use JobBoard\Models\Entities\Job;
 
+/**
+ * Class JobController
+ *
+ * Controller that handles Job related logic
+ *
+ * @package JobBoard\Http\Controllers
+ */
 class JobController extends Controller
 {
 
     /**
-     * Containing our jobRepository to make all our database calls to
+     * Contains JobRepository to make database calls.
      *
      * @var JobInterface
      */
     protected $jobRepo;
 
+    /**
+     * Contains notification handler to send notifications to moderator.
+     *
+     * @var NotificationInterface
+     */
     private $notification;
 
     /**
-     * Loads our $jobRepo with the actual Repo associated with our jobInterface
+     * Loads $jobRepo and $notification with the actual concrete class associated with JobInterface and
+     * NotificationInterface.
      *
-     * @param jobInterface $jobRepo
-     * @param NotificationInterface $notification
+     * @param JobInterface $jobRepo Repository to make database calls
+     * @param NotificationInterface $notification Notification handler to send notifications
      */
     public function __construct(JobInterface $jobRepo, NotificationInterface $notification)
     {
@@ -32,7 +45,7 @@ class JobController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Shows the form for creating a new job post.
      *
      * @return Response
      */
@@ -42,9 +55,9 @@ class JobController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stores a newly created job in database.
      *
-     * @param Request $request
+     * @param Request $request Request object containing get/post parameters
      * @return Response
      */
     public function store(Request $request)
@@ -65,12 +78,21 @@ class JobController extends Controller
             ->withInput();
     }
 
+    /**
+     * Returns all job data to view
+     *
+     * @return Response
+     */
     public function index()
     {
-        $data = $this->jobRepo->getAll("title", "asc",10);
+        $data = $this->jobRepo->getAll("title", "asc", 10);
         return view("jobs.job_list", array("data" => $data));
     }
 
+    /**
+     * @param Job $job Job entitiy to show details for
+     * @return Response
+     */
     public function show(Job $job)
     {
         return view("jobs.job_show", array("job" => $job));
