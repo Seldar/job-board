@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Poster
  *
- * Class to define Poster entity
+ * Class to define Poster entity.
  *
  * @package JobBoard\Models\Entities
  */

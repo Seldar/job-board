@@ -18,7 +18,7 @@ class SubmissionInModeration extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * Additional parameters to build the url's and dynamic content in the email body
+     * Additional parameters to build the url's and dynamic content in the email body.
      *
      * @var array
      */

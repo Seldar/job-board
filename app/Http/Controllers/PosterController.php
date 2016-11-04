@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 /**
  * Class PosterController
  *
- * Controller that handles Poster related logic
+ * Controller that handles Poster related logic.
  *
  * @package JobBoard\Http\Controllers
  */

@@ -12,10 +12,19 @@ namespace Tests;
 
 use Illuminate\Support\Facades\Mail;
 
+/**
+ * Class MailTracking
+ *
+ * Adds Mail tracking capabilities for test classes.
+ *
+ * @package Tests
+ */
 trait MailTracking
 {
     /**
      * Delivered emails.
+     *
+     * @var array
      */
     protected $emails = [];
     /**
@@ -30,6 +39,8 @@ trait MailTracking
     }
     /**
      * Assert that at least one email was sent.
+     *
+     * @return self
      */
     protected function seeEmailWasSent()
     {
@@ -40,6 +51,8 @@ trait MailTracking
     }
     /**
      * Assert that no emails were sent.
+     *
+     * @return self
      */
     protected function seeEmailWasNotSent()
     {
@@ -167,6 +180,8 @@ trait MailTracking
     }
     /**
      * Retrieve the mostly recently sent swift message.
+     *
+     * @return \Swift_Message
      */
     protected function lastEmail()
     {

@@ -20,7 +20,7 @@ namespace JobBoard\Models\Repositories\Poster;
 interface PosterInterface
 {
     /**
-     * Returns the Poster object associated with the passed email
+     * Returns the Poster object associated with the passed email.
      *
      * @param string $email email of the poster to be retrieved
      *
@@ -29,7 +29,7 @@ interface PosterInterface
     public function getByEmail($email);
 
     /**
-     * Save the poster data to database using $email data
+     * Save the poster data to database using $email data.
      *
      * @param string $email email of the poster to be saved
      *

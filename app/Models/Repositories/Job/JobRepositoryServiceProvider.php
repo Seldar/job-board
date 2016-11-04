@@ -19,7 +19,7 @@ use Illuminate\Support\ServiceProvider;
 class JobRepositoryServiceProvider extends ServiceProvider
 {
     /**
-     * Registers the JobInterface with Laravels IoC Container
+     * Registers the JobInterface with Laravels IoC Container.
      *
      * @return void
      */

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Job
  *
- * Class to define Job entity
+ * Class to define Job entity.
  *
  * @package JobBoard\Models\Entities
  */
@@ -32,7 +32,7 @@ class Job extends Model
     public $timestamps = false;
 
     /**
-     * BelongsTo Relation definition to access related poster Model
+     * BelongsTo Relation definition to access related poster Model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -13,14 +13,14 @@ namespace JobBoard\Models\Repositories\Job;
 /**
  * Interface JobInterface
  *
- * Interface for job repositories
+ * Interface for job repositories.
  *
  * @package JobBoard\Models\Repositories\Job
  */
 interface JobInterface
 {
     /**
-     * Returns all results according to specified $orderBy and $direction order and $limit
+     * Returns all results according to specified $orderBy and $direction order and $limit.
      *
      * @param string $orderBy Order by column name.
      * @param string $direction Order by direction.
@@ -31,7 +31,7 @@ interface JobInterface
     public function getAll($orderBy, $direction, $limit);
 
     /**
-     * Returns the job object associated with the passed id
+     * Returns the job object associated with the passed id.
      *
      * @param int $jobId database id of the job to get
      *
@@ -40,7 +40,7 @@ interface JobInterface
     public function getById($jobId);
 
     /**
-     * Save the job data to database using $request data
+     * Save the job data to database using $request data.
      *
      * @param array $request
      *

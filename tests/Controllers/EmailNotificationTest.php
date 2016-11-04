@@ -13,10 +13,20 @@ namespace Tests\Controllers;
 use Tests\MailTracking;
 use JobBoard\Http\Controllers\NotificationInterface;
 
+/**
+ * Class EmailNotificationTest
+ *
+ * Test Class to test EmailNotification class methods
+ *
+ * @package Tests\Controllers
+ */
 class EmailNotificationTest extends \TestCase
 {
     use MailTracking;
 
+    /**
+     * Sends a sample notification and checks the sent mail
+     */
     public function testSendNotification()
     {
         $notification = app(NotificationInterface::class);

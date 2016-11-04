@@ -10,7 +10,7 @@ use JobBoard\Models\Entities\Job;
 /**
  * Class JobController
  *
- * Controller that handles Job related logic
+ * Controller that handles Job related logic.
  *
  * @package JobBoard\Http\Controllers
  */
@@ -93,7 +93,7 @@ class JobController extends Controller
     /**
      * Returns a single Job data as View.
      *
-     * @param Job $job Job entitiy to show details for
+     * @param Job $job Job entity to show details for
      *
      * @return Response
      */

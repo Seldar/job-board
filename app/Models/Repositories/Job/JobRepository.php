@@ -40,7 +40,7 @@ class JobRepository implements JobInterface
     }
 
     /**
-     * Returns the job object associated with the passed id
+     * Returns the job object associated with the passed id.
      *
      * @param int $jobId Database id of the associated job
      *
@@ -52,7 +52,7 @@ class JobRepository implements JobInterface
     }
 
     /**
-     * Returns all results according to specified $orderBy and $direction order and $limit
+     * Returns all results according to specified $orderBy and $direction order and $limit.
      *
      * @param string $orderBy Order by column name.
      * @param string $direction Order by direction.
@@ -86,7 +86,7 @@ class JobRepository implements JobInterface
 
 
     /**
-     * Converts the Eloquent object to a standard format
+     * Converts the Eloquent object to a standard format.
      *
      * @param Model $job Model to be converted
      *

@@ -19,7 +19,7 @@ use Illuminate\Support\ServiceProvider;
 class PosterRepositoryServiceProvider extends ServiceProvider
 {
     /**
-     * Registers the PosterInterface with Laravels IoC Container
+     * Registers the PosterInterface with Laravels IoC Container.
      *
      * @return void
      */

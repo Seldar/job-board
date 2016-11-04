@@ -15,16 +15,29 @@ use Tests\MailTracking;
 use Illuminate\Support\Facades\Hash;
 use JobBoard\Models\Entities\Poster;
 
+/**
+ * Class PosterControllerTest
+ *
+ * Test Class to test PosterController class methods
+ *
+ * @package Tests\Controllers
+ */
 class PosterControllerTest extends \TestCase
 {
     use MailTracking;
 
+    /**
+     * Sets up the database fixture and the environment.
+     */
     public function setUp()
     {
         parent::setUp();
         $this->seed('DatabaseSeeder');
     }
 
+    /**
+     * Tests PosterController::save() method.
+     */
     public function testSave()
     {
         $poster = app(PosterController::class);
@@ -40,6 +53,9 @@ class PosterControllerTest extends \TestCase
         $this->assertSame("Your submission is still in moderation!", $poster->errors['email']);
     }
 
+    /**
+     * Tests PosterController::approve() method.
+     */
     public function testApprove()
     {
         $poster = Poster::find(1);
@@ -48,6 +64,9 @@ class PosterControllerTest extends \TestCase
         ->see("Poster approved successfully!");
     }
 
+    /**
+     * Tests PosterController::spam() method.
+     */
     public function testSpam()
     {
         $poster = Poster::find(1);

@@ -14,14 +14,27 @@ use JobBoard\Models\Repositories\Job\JobInterface;
 use JobBoard\Models\Entities\Job;
 use \TestCase;
 
+/**
+ * Class JobRepositoryTest
+ *
+ * Test Class to test JobRepository class methods
+ *
+ * @package Tests\Repositories
+ */
 class JobRepositoryTest extends TestCase
 {
+    /**
+     * Sets up the database fixture and the environment.
+     */
     protected function setUp()
     {
         parent::setUp();
         $this->seed('DatabaseSeeder');
     }
 
+    /**
+     * Tests JobRepository::getById() method.
+     */
     public function testGetById()
     {
         $jobRepo = app(JobInterface::class);
@@ -33,6 +46,9 @@ class JobRepositoryTest extends TestCase
         $this->assertNotEmpty($result->poster_id);
     }
 
+    /**
+     * Tests JobRepository::getAll() method.
+     */
     public function testGetAll()
     {
         $jobRepo = app(JobInterface::class);
@@ -49,6 +65,9 @@ class JobRepositoryTest extends TestCase
         $this->assertSame(5, count($jobRepo->getAll("id", "desc", -2)));
     }
 
+    /**
+     * Tests JobRepository::save() method.
+     */
     public function testSave()
     {
         $jobRepo = app(JobInterface::class);
@@ -60,6 +79,9 @@ class JobRepositoryTest extends TestCase
         $this->assertSame(6, count($jobRepo->getAll("id", "desc", 6)));
     }
 
+    /**
+     * Tests JobRepository::convertFormat() method.
+     */
     public function testConvertFormat()
     {
         $jobRepo = app(JobInterface::class);
