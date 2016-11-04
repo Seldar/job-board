@@ -21,14 +21,16 @@
             "database"
         ],
         "psr-4": {
-            "JobBoard\\": "app/",
-            "Tests\\": "tests/"
+            "JobBoard\\": "app/"
         }
     },
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php"
-        ]
+        ],
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "scripts": {
         "post-root-package-install": [
