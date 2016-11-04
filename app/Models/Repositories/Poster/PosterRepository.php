@@ -69,12 +69,12 @@ class PosterRepository implements PosterInterface
     /**
      * Converts the Eloquent object to a standard format.
      *
-     * @param mixed $job
+     * @param mixed $poster
      *
      * @return stdClass
      */
-    protected function convertFormat($job)
+    public function convertFormat($poster)
     {
-        return $job ? (object) $job->toArray() : null;
+        return $poster ? (object) $poster->toArray() : null;
     }
 }

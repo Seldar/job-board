@@ -20,7 +20,7 @@ class PosterSeeder extends Seeder
         ]);
 
         DB::table('posters')->insert([
-            'email' => str_random(10) . "@gmail.com",
+            'email' => "test@gmail.com",
             'approved' => 1,
             'spam' => 0,
         ]);

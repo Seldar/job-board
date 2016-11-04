@@ -4,10 +4,11 @@
  * User: Ulukut
  * Date: 3.11.2016
  * Time: 16:44
+ *
  * @author Volkan Ulukut <arthan@gmail.com>
  */
 
-namespace Tests\Models\Repositories;
+namespace Tests\Repositories;
 
 use JobBoard\Models\Repositories\Job\JobInterface;
 use JobBoard\Models\Entities\Job;

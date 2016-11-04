@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'mailgun'),
+    'driver' => env('MAIL_DRIVER', 'log'),
 
     /*
     |--------------------------------------------------------------------------
@@ -60,10 +60,10 @@ return [
         'name' => 'Job Board Robot',
     ],
 
-    'to' => [
+    /*'to' => [
         'address' => 'arthan@gmail.com',
         'name' => 'Laravel Example'
-    ],
+    ],*/
 
     /*
     |--------------------------------------------------------------------------

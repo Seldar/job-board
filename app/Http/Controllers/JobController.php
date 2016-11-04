@@ -51,7 +51,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view("jobs.create_job");
+        return view("jobs.job_create");
     }
 
     /**
