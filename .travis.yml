@@ -24,7 +24,7 @@ env:
     - DB_PASSWORD=
 
 before_install:
-    - mysql -e "create database IF NOT EXISTS 'jobboard';" -uroot
+    - mysql -e "create database IF NOT EXISTS jobboard;" -uroot
 
 after_install:
     - php artisan migrate
