@@ -1,4 +1,4 @@
-Job Board Application
+Job Board Application [![Build Status](https://travis-ci.org/Seldar/job-board.svg?branch=master)](https://travis-ci.org/Seldar/job-board)
 =====================
 
 The "Job Board Application" is a laravel application which enables a user to post a job which in return could be approved or marked as spam by a moderator utilizing emails. The published job posts could also be browsed.
