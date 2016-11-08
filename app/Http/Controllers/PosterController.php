@@ -85,14 +85,12 @@ class PosterController extends Controller
             if ($currPoster->spam) {
                 $this->errors['email'] = "Your email is tagged as spam!";
                 return false;
-            } elseif (!$currPoster->approved) {
+            } else if (!$currPoster->approved) {
                 $this->errors['email'] = "Your submission is still in moderation!";
                 return false;
-            } else {
-                return $currPoster->id;
             }
+            return $currPoster->id;
         }
-
     }
 
     /**
