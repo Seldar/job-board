@@ -43,7 +43,7 @@ class PosterController extends Controller
      *
      * @var bool
      */
-    public $newPoster = 0;
+    public $newPoster = false;
 
     /**
      * Loads $posterRepo and $notification with the actual concrete class associated with PosterInterface and
@@ -79,7 +79,7 @@ class PosterController extends Controller
         $currPoster = $this->posterRepo->getByEmail($email);
         if (!$currPoster) {
             $this->notification->sendNotification("SubmissionInModeration", $email, []);
-            $this->newPoster = 1;
+            $this->newPoster = true;
             return $this->posterRepo->save($email);
         } else {
             if ($currPoster->spam) {
