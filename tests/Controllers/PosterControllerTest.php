@@ -57,7 +57,7 @@ class PosterControllerTest extends \TestCase
         $this->assertSame("Your email is tagged as spam!", $poster->errors['email']);
 
         $posterModel = Poster::where(array("approved" => 1, "spam" => 0))->first();
-        $poster_id = $poster->save($posterModel);
+        $poster_id = $poster->save($posterModel->email);
         $this->assertInternalType("int", $poster_id);
     }
 
