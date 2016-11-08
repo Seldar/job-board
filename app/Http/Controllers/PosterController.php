@@ -70,29 +70,29 @@ class PosterController extends Controller
      */
     public function save($email)
     {
-        $currPoster = $this->posterRepo->getByEmail($email);
-        if (!$email)
-        {
+
+        if (!$email) {
             $this->errors['email'] = "Please enter your email address!";
             return false;
         }
-        elseif (!$currPoster) {
+
+        $currPoster = $this->posterRepo->getByEmail($email);
+        if (!$currPoster) {
             $this->notification->sendNotification("SubmissionInModeration", $email, []);
             $this->newPoster = 1;
             return $this->posterRepo->save($email);
         } else {
-            if ($currPoster->spam || !$currPoster->approved) {
-                if ($currPoster->spam) {
-                    $this->errors['email'] = "Your email is tagged as spam!";
-                } elseif (!$currPoster->approved) {
-                    $this->errors['email'] = "Your submission is still in moderation!";
-                }
+            if ($currPoster->spam) {
+                $this->errors['email'] = "Your email is tagged as spam!";
                 return false;
-
+            } elseif (!$currPoster->approved) {
+                $this->errors['email'] = "Your submission is still in moderation!";
+                return false;
             } else {
                 return $currPoster->id;
             }
         }
+
     }
 
     /**
@@ -102,6 +102,7 @@ class PosterController extends Controller
      * @param string $key Hashed key for security purposes
      *
      * @property string $email
+     * @property string $approved
      *
      * @return Response
      */
@@ -122,6 +123,7 @@ class PosterController extends Controller
      * @param string $key Hashed key for security purposes
      *
      * @property string $email
+     * @property string $spam
      *
      * @return Response
      */
@@ -135,6 +137,14 @@ class PosterController extends Controller
         return view("posters.spam_fail");
     }
 
+    /**
+     * Checks given email string with the hashed key received.
+     *
+     * @param string $email
+     * @param string $key
+     *
+     * @return string
+     */
     public function checkEmailHash($email, $key)
     {
         return Hash::check($email, str_replace("|", "/", $key));
