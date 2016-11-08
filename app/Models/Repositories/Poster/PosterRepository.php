@@ -48,7 +48,7 @@ class PosterRepository implements PosterInterface
      */
     public function getByEmail($email)
     {
-        return $this->convertFormat($this->posterModel->where("email",$email)->first());
+        return $this->convertFormat($this->posterModel->where("email", $email)->first());
     }
 
     /**
