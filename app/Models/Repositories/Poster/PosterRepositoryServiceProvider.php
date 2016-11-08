@@ -26,7 +26,7 @@ class PosterRepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         // Bind the returned class to the namespace 'JobBoard\Models\Repositories\Poster\PosterInterface'
-        $this->app->bind('JobBoard\Models\Repositories\Poster\PosterInterface', function ($app) {
+        $this->app->bind('JobBoard\Models\Repositories\Poster\PosterInterface', function () {
             return new PosterRepository(new Poster());
         });
     }

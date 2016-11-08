@@ -51,6 +51,14 @@ class PosterControllerTest extends \TestCase
 
         $poster->save("tester@gmail.com");
         $this->assertSame("Your submission is still in moderation!", $poster->errors['email']);
+
+        $posterModel = Poster::where("spam", 1)->first();
+        $poster->save($posterModel->email);
+        $this->assertSame("Your email is tagged as spam!", $poster->errors['email']);
+
+        $posterModel = Poster::where(array("approved" => 1, "spam" => 0))->first();
+        $poster_id = $poster->save($posterModel);
+        $this->assertInternalType("int", $poster_id);
     }
 
     /**
@@ -59,9 +67,13 @@ class PosterControllerTest extends \TestCase
     public function testApprove()
     {
         $poster = Poster::find(1);
-        $this->visit('/posters/approve/1/' . str_replace("/","|",(Hash::make($poster->email))))
-        ->assertResponseOk()
-        ->see("Poster approved successfully!");
+        $this->visit('/posters/approve/1/' . str_replace("/", "|", (Hash::make($poster->email))))
+            ->assertResponseOk()
+            ->see("Poster approved successfully!");
+
+        $this->visit('/posters/approve/1/someString')
+            ->assertResponseOk()
+            ->see("Poster couldn't be approved! Please use the link in the email you received.");
     }
 
     /**
@@ -70,8 +82,12 @@ class PosterControllerTest extends \TestCase
     public function testSpam()
     {
         $poster = Poster::find(1);
-        $this->visit('/posters/spam/1/' . str_replace("/","|",(Hash::make($poster->email))))
+        $this->visit('/posters/spam/1/' . str_replace("/", "|", (Hash::make($poster->email))))
             ->assertResponseOk()
             ->see("Poster's email marked as spam!");
+
+        $this->visit('/posters/spam/1/someString')
+            ->assertResponseOk()
+            ->see("Poster's email couldn't be marked as a spam! Please use the link in the email you received.");
     }
 }

@@ -1,5 +1,5 @@
-Job Board Application [![Build Status](https://travis-ci.org/Seldar/job-board.svg?branch=master)](https://travis-ci.org/Seldar/job-board) [![codecov.io](http://codecov.io/github/Seldar/job-board/coverage.svg?branch=master)](http://codecov.io/github/Seldar/job-board?branch=master)
-=====================
+Job Board Application [![Build Status](https://travis-ci.org/Seldar/job-board.svg?branch=master)](https://travis-ci.org/Seldar/job-board) [![codecov.io](http://codecov.io/github/Seldar/job-board/coverage.svg?branch=master)](http://codecov.io/github/Seldar/job-board?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Seldar/job-board/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Seldar/job-board/?branch=master)
+========================================================================================================================================================================================================================================================================================
 
 The "Job Board Application" is a laravel application which enables a user to post a job which in return could be approved or marked as spam by a moderator utilizing emails. The published job posts could also be browsed.
 

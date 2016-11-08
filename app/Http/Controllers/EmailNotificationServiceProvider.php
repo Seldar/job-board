@@ -25,7 +25,7 @@ class EmailNotificationServiceProvider extends ServiceProvider
     public function register()
     {
         // Bind the returned class to the namespace 'JobBoard\Http\Controllers\NotificationInterface'
-        $this->app->bind('JobBoard\Http\Controllers\NotificationInterface', function ($app) {
+        $this->app->bind('JobBoard\Http\Controllers\NotificationInterface', function () {
             return new EmailNotification();
         });
     }

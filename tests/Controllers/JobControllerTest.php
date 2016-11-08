@@ -12,6 +12,7 @@ namespace Tests\Controllers;
 
 use \TestCase;
 use Tests\MailTracking;
+use JobBoard\Models\Entities\Poster;
 
 /**
  * Class JobControllerTest
@@ -58,6 +59,31 @@ class JobControllerTest extends TestCase
             ->seeEmailSubject('New Submission')
             ->seeEmailTo('moderator@job-board.com')
             ->seeEmailContains('A new user posted a job. Please review and approve or mark it as a spam accordingly.');
+
+        $poster = Poster::where("spam",1)->first();
+
+        $this->visit('/jobs/create')
+            ->type('Test Title', 'title')
+            ->type('Test Description', 'description')
+            ->type('testemail@gmail.com', 'email')
+            ->type(csrf_token(), '_token')
+            ->press('Post')
+            ->seePageIs('/jobs/create')
+            ->see('Your submission is still in moderation!');
+
+        $this->visit('/jobs/create')
+            ->type('Test Title', 'title')
+            ->type('Test Description', 'description')
+            ->type($poster->email, 'email')
+            ->type(csrf_token(), '_token')
+            ->press('Post')
+            ->seePageIs('/jobs/create')
+            ->see('Your email is tagged as spam!');
+
+        $this->visit('/jobs/create')
+            ->press('Post')
+            ->seePageIs('/jobs/create')
+            ->see('Please enter your email address!');
     }
 
     /**

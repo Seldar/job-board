@@ -26,7 +26,7 @@ class JobRepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         // Bind the returned class to the namespace 'JobBoard\Models\Repositories\Job\JobInterface'
-        $this->app->bind('JobBoard\Models\Repositories\Job\JobInterface', function ($app) {
+        $this->app->bind('JobBoard\Models\Repositories\Job\JobInterface', function () {
             return new JobRepository(new Job());
         });
     }

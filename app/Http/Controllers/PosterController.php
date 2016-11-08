@@ -66,12 +66,17 @@ class PosterController extends Controller
      *
      * @param string $email Email address of the poster
      *
-     * @return bool
+     * @return int|bool
      */
     public function save($email)
     {
         $currPoster = $this->posterRepo->getByEmail($email);
-        if (!$currPoster) {
+        if (!$email)
+        {
+            $this->errors['email'] = "Please enter your email address!";
+            return false;
+        }
+        elseif (!$currPoster) {
             $this->notification->sendNotification("SubmissionInModeration", $email, []);
             $this->newPoster = 1;
             return $this->posterRepo->save($email);
@@ -96,11 +101,13 @@ class PosterController extends Controller
      * @param Poster $poster Poster model to be approved
      * @param string $key Hashed key for security purposes
      *
+     * @property string $email
+     *
      * @return Response
      */
     public function approve(Poster $poster, $key)
     {
-        if (Hash::check($poster->email, str_replace("|", "/", $key))) {
+        if ($this->checkEmailHash($poster->email, $key)) {
             $poster->approved = 1;
             $poster->save();
             return view("posters.approve_successful");
@@ -114,16 +121,23 @@ class PosterController extends Controller
      * @param Poster $poster Poster model to be marked as spam
      * @param string $key Hashed key for security purposes
      *
+     * @property string $email
+     *
      * @return Response
      */
     public function spam(Poster $poster, $key)
     {
-        if (Hash::check($poster->email, str_replace("|", "/", $key))) {
+        if ($this->checkEmailHash($poster->email, $key)) {
             $poster->spam = 1;
             $poster->save();
             return view("posters.spam_successful");
         }
         return view("posters.spam_fail");
+    }
+
+    public function checkEmailHash($email, $key)
+    {
+        return Hash::check($email, str_replace("|", "/", $key));
     }
 
 }
