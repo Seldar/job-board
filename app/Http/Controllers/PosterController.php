@@ -100,7 +100,7 @@ class PosterController extends Controller
      */
     public function approve(Poster $poster, $key)
     {
-        if (Hash::check($poster->email, str_replace("|","/",$key))) {
+        if (Hash::check($poster->email, str_replace("|", "/", $key))) {
             $poster->approved = 1;
             $poster->save();
             return view("posters.approve_successful");
@@ -118,7 +118,7 @@ class PosterController extends Controller
      */
     public function spam(Poster $poster, $key)
     {
-        if (Hash::check($poster->email, str_replace("|","/",$key))) {
+        if (Hash::check($poster->email, str_replace("|", "/", $key))) {
             $poster->spam = 1;
             $poster->save();
             return view("posters.spam_successful");

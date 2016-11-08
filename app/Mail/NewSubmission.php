@@ -43,8 +43,8 @@ class NewSubmission extends Mailable
      */
     public function build()
     {
-        $this->params['approveUrl'] = URL::to('/posters/approve/' . $this->params['poster_id'] . "/" . str_replace("/","|",Hash::make($this->params['email'])));
-        $this->params['spamUrl'] = URL::to('/posters/spam/' . $this->params['poster_id'] . "/" . str_replace("/","|",Hash::make($this->params['email'])));
+        $this->params['approveUrl'] = URL::to('/posters/approve/' . $this->params['poster_id'] . "/" . str_replace("/", "|", Hash::make($this->params['email'])));
+        $this->params['spamUrl'] = URL::to('/posters/spam/' . $this->params['poster_id'] . "/" . str_replace("/", "|", Hash::make($this->params['email'])));
         return $this->view("emails.new_submission");
     }
 }
