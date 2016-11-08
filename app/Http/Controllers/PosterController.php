@@ -82,15 +82,30 @@ class PosterController extends Controller
             $this->newPoster = true;
             return $this->posterRepo->save($email);
         } else {
-            if ($currPoster->spam) {
-                $this->errors['email'] = "Your email is tagged as spam!";
-                return false;
-            } else if (!$currPoster->approved) {
+            return $this->handleExistingPoster($currPoster);
+        }
+    }
+
+    /**
+     * Gets $poster object and checks the spam and approved flags. sets errors accordingly, or returns poster id
+     * if approved and not spam.
+     *
+     * @param \stdClass $poster
+     *
+     * @return bool
+     */
+    public function handleExistingPoster(\stdClass $poster)
+    {
+        if ($poster->spam) {
+            $this->errors['email'] = "Your email is tagged as spam!";
+            return false;
+        } else {
+            if (!$poster->approved) {
                 $this->errors['email'] = "Your submission is still in moderation!";
                 return false;
             }
-            return $currPoster->id;
         }
+        return $poster->id;
     }
 
     /**
