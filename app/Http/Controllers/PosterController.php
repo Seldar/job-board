@@ -101,9 +101,6 @@ class PosterController extends Controller
      * @param Poster $poster Poster model to be approved
      * @param string $key Hashed key for security purposes
      *
-     * @property string $email
-     * @property string $approved
-     *
      * @return Response
      */
     public function approve(Poster $poster, $key)
@@ -121,9 +118,6 @@ class PosterController extends Controller
      *
      * @param Poster $poster Poster model to be marked as spam
      * @param string $key Hashed key for security purposes
-     *
-     * @property string $email
-     * @property string $spam
      *
      * @return Response
      */

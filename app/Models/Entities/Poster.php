@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Model;
  * Class to define Poster entity.
  *
  * @package JobBoard\Models\Entities
+ *
+ * @property string $email
+ * @property bool $spam
+ * @property bool $approved
  */
 class Poster extends Model
 {
