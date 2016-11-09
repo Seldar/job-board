@@ -94,6 +94,6 @@ class JobRepository implements JobInterface
      */
     public function convertFormat($job)
     {
-        return $job ? (object)$job->toArray() : null;
+        return $job ? (object) $job->toArray() : null;
     }
 }
